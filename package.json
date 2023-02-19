@@ -1,6 +1,6 @@
 {
   "name": "maestro-ts",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "description": "An executable compiler for creating yaml-flows from typescript files.",
   "main": "./build/index.js",
   "bin": {
@@ -12,6 +12,7 @@
   "author": "johkade.dev@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^18.14.0",
     "typescript": "^4.9.5"
   },
   "dependencies": {},
