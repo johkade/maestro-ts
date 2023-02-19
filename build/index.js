@@ -28,16 +28,16 @@ const path = __importStar(require("path"));
 const configFile = "maestro-ts.config.js";
 const tempFolder = path.join(__dirname, "../temp");
 const main = () => {
+    var _a;
     console.log("Checking for config file");
     try {
         const configPath = path.join(process.cwd(), configFile);
         const config = require(configPath);
         process.env["appId"] = config.appId;
-        process.env["deepLinkBase"] = config.deepLinkBase;
+        process.env["deepLinkBase"] = (_a = config.deepLinkBase) !== null && _a !== void 0 ? _a : config.appId + "://";
         console.log("found config file");
     }
     catch (e) {
-        console.log(e);
         console.log("No config file found");
     }
     console.log("Scanning for *.maestro.ts files");

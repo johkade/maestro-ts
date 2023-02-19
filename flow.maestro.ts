@@ -2,7 +2,6 @@ import * as M from "maestro-ts"
 
 M.initFlow()
 M.launchApp()
-M.initFlow("com.johkade.myapp", { TEST: "hello", number: 4 })
 M.tapOn("Button")
 M.inputText("textField", "Hello World")
 M.inputText("otherField", "${TEST}")

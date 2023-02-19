@@ -52,8 +52,7 @@ exports.MaestroTranslators = {
         return `- openLink: ${url}\n`;
     },
     navigate: (path) => {
-        var _a;
-        return `- openLink: ${(_a = process.env["deepLinkBase"]) !== null && _a !== void 0 ? _a : process.env["appId"] + "://"}${path}\n`;
+        return `- openLink: ${process.env["deepLinkBase"]}${path}\n`;
     },
     runFlow: (path, env) => {
         if (!env)

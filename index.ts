@@ -15,10 +15,9 @@ const main = () => {
       deepLinkBase: string
     }
     process.env["appId"] = config.appId
-    process.env["deepLinkBase"] = config.deepLinkBase
+    process.env["deepLinkBase"] = config.deepLinkBase ?? config.appId + "://"
     console.log("found config file")
   } catch (e) {
-    console.log(e)
     console.log("No config file found")
   }
   console.log("Scanning for *.maestro.ts files")

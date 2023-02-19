@@ -53,9 +53,7 @@ export const MaestroTranslators: typeof Maestro = {
     return `- openLink: ${url}\n`
   },
   navigate: (path) => {
-    return `- openLink: ${
-      process.env["deepLinkBase"] ?? process.env["appId"] + "://"
-    }${path}\n`
+    return `- openLink: ${process.env["deepLinkBase"]}${path}\n`
   },
   runFlow: (path, env) => {
     if (!env) return `runFlow: ${path}\n---\n`
