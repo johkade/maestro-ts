@@ -1,13 +1,38 @@
 declare module "maestro-ts" {
+  /**
+   * Should be called at the start of every test flow.
+   * @param appId The bundle id of your app. Falls back to the appId provided in maestro-ts.config.js.
+   * @param env A map of environment variables.
+   */
   export function initFlow(
     appId?: string,
     env?: { [key: string]: string | number }
   )
+  /**
+   * Launches the app.
+   * @param appId The bundle id of your app. Falls back to the appId provided in maestro-ts.config.js.
+   * @param clear Whether to clear the app state before starting.
+   */
   export function launchApp(appId?: string, clear?: boolean)
+  /**
+   * Tap on a text visible on screen.
+   */
   export function tapOnText(text: string)
+  /**
+   * Tap on an element with the given testId.
+   */
   export function tapOn(testId: string)
+  /**
+   * Long press on an element with the given testId.
+   */
   export function longPressOn(testId: string)
+  /**
+   * Tap on the given point.
+   */
   export function tapOnPoint(point: { x: number; y: number })
+  /**
+   * Long press on the given point.
+   */
   export function longPressOnPoint(point: { x: number; y: number })
   export function inputText(testId: string, text: string)
   export function eraseText(characters: int)
@@ -15,6 +40,11 @@ declare module "maestro-ts" {
   export function assertVisible(testId: string)
   export function assertNotVisible(testId: string)
   export function clearState()
+  /**
+   * Run a subFlow.
+   * @param path Path to the subFlow.
+   * @param env Map of env variables for the subFlow.
+   */
   export function runFlow(
     path: string,
     env?: { [key: string]: string | number }
