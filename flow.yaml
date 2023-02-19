@@ -1,0 +1,17 @@
+appId: com.some.app
+---
+- launchApp:
+    appId: "com.some.app"
+appId: com.johkade.myapp
+env:
+    TEST: hello
+    number: 4
+- tapOn:
+    id: "Button"
+- tapOn:
+    id: "textField"
+- inputText: Hello World
+- tapOn:
+    id: "otherField"
+- inputText: ${TEST}
+- openLink: com.some.app:///profile/me

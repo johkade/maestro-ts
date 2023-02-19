@@ -1,12 +1,13 @@
 {
   "name": "maestro-ts",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "description": "An executable compiler for creating yaml-flows from typescript files.",
   "main": "./build/index.js",
   "bin": {
     "maestro-ts": "./build/index.js"
   },
   "scripts": {
+    "test": "node ./build/index.js",
     "build": "tsc"
   },
   "author": "johkade.dev@gmail.com",
@@ -16,6 +17,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {},
+  "typings": "./maestro.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johkade/maestro-ts.git"

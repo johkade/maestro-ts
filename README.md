@@ -4,7 +4,7 @@ An executable compiler for creating yaml-flows from typescript files.
 
 ## What it is
 
-Maestro is a new e2e testing tool for mobile apps. Usually you would write testing flows in yaml, which however, can be a hassle to write, since there is no easy way to set up autocomplete and the syntax can be fairly verbose at times. Additionally there are currently still some instabilities with maestro, such as with the inputText-directive, which can be fixed using hacky workarounds. Maestro-ts introduces an intelligent parsing-layer which takes in a simplistic typescript script and generates the yaml for you.
+Maestro is a new e2e testing tool for mobile apps. Usually you would write test flows in yaml, which however, can be a hassle to write, since there is no easy way to set up autocomplete and the syntax can be fairly verbose at times. Additionally, there are still some instabilities with maestro, such as with the inputText-directive, which can be fixed using hacky workarounds. Maestro-ts introduces an intelligent parsing-layer which takes in a simplistic typescript script and generates the yaml for you.
 
 ## Recommended Usage
 
@@ -37,6 +37,19 @@ Maestro.tapOn("someTestId")
 Now, from your e2e test folder, you can generate the yaml flows and run them.
 
 ```sh
-npx maestro-ts
-maestro test test/e2e/build/my-first-flow.yaml
+cd test/e2e && npx maestro-ts
+maestro test my-first-flow.yaml
+```
+
+#### Advanced Usage
+
+By adding a config file to the project, you can take advantage of some extra features and save a bit of work while writing flows:
+
+```js
+// test/e2e/maestro-ts.config.js
+
+module.exports = {
+  appId: "com.some.app", // default for commands like launchApp
+  deepLinkBase: "com.some.app://", // used for M.navigate("/profile")
+}
 ```

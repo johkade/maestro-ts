@@ -1,20 +1,31 @@
 declare module "maestro-ts" {
-  export function initFlow(appId?: string)
+  export function initFlow(
+    appId?: string,
+    env?: { [key: string]: string | number }
+  )
   export function launchApp(appId?: string, clear?: boolean)
   export function tapOn(testId: string)
+  export function longPressOn(testId: string)
   export function tapOnPoint(point: { x: number; y: number })
+  export function longPressOnPoint(point: { x: number; y: number })
   export function inputText(testId: string, text: string)
   export function eraseText(characters: int)
   export function openLink(url: string)
   export function assertVisible(testId: string)
+  export function assertNotVisible(testId: string)
   export function clearState()
-  export function setEnv(env: { [key: string]: string | number })
   export function runFlow(
     path: string,
     env?: { [key: string]: string | number }
   )
+  export function scroll()
   export function scrollUntilVisible(testId: string)
-  export function inputRandomNumber()
-  export function inputRandomName()
+  export function inputRandomNumber(testId: string)
+  export function inputRandomName(testId: string)
+  export function inputRandomEmail(testId: string)
+  export function inputRandomText(testId: string)
   export function navigate(path: string)
+  export function repeat(times: number, fn: () => void)
+  export function repeatWhileVisible(id: string, fn: () => void)
+  export function repeatWhileNotVisible(id: string, fn: () => void)
 }
