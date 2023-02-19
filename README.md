@@ -26,10 +26,10 @@ yarn add maestro-ts --dev
 Create a file called `my-first-flow.maestro.ts` and add the following content:
 
 ```ts
-import * as Maestro from "maestro-ts"
+import * as M from "maestro-ts"
 
-Maestro.initApp("com.myTeam.myApp")
-Maestro.tapOn("someTestId")
+M.initApp("com.myTeam.myApp")
+M.tapOn("someTestId")
 ```
 
 #### Compiling and running your flows
