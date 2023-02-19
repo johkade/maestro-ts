@@ -1,4 +1,4 @@
-# Maestro-ts (WIP)
+# Maestro-ts
 
 An executable compiler for creating yaml-flows from typescript files.
 
@@ -83,10 +83,14 @@ If that's the case - congrats! Maybe you've even enhanced your yaml-writing-work
 
 Nothing stops you from initially creating your flows using maestro-ts and then manually extending them. Just make sure you don't overwrite your manually edited flow next time you run `npx maestro-ts`.
 
-### You're not writing a React Native app, but instead are using Flutter or native iOS and Android
+### You're writing your app with RN+JS, Flutter or in native iOS and Android
 
-... Nothing can help you anymore, sorry my friend...
-You might not want to set up maestro-ts in a non-React-Native app, so possibly you just want to write yaml yourself. However, if you still want to try maestro-ts, why not set up a separate project, just to create flows with?
+<details>
+  <summary>...Nothing can help you anymore, sorry my friend...</summary>
+  
+Just kidding - Don't get mad! 🥸
+
+I get you might not want to set up maestro-ts in a non-React-Native app, so possibly you just want to write yaml yourself. However, if you still want to try maestro-ts, why not set up a separate project, just to create flows with?
 
 ```bash
 mkdir maestro-flow-gen && cd maestro-flow-gen
@@ -97,3 +101,5 @@ touch myflow.maestro.ts # create your flow in here
 # creates myflow.yaml which you can just drop into your flutter, iOS or Android app.
 npx maestro-ts
 ```
+
+</details>
