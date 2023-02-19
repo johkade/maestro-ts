@@ -22,6 +22,9 @@ export const MaestroTranslators: typeof Maestro = {
   tapOn: (id) => {
     return `- tapOn:\n    id: "${id}"\n`
   },
+  tapOnText: (text) => {
+    return `- tapOn: ${text}`
+  },
   tapOnPoint: ({ x, y }) => {
     return `- tapOn:\n    point: ${x}, ${y}"\n`
   },
@@ -30,6 +33,12 @@ export const MaestroTranslators: typeof Maestro = {
   },
   longPressOnPoint: ({ x, y }) => {
     return `- longPressOn:\n    point: ${x}, ${y}"\n`
+  },
+  swipeLeft: () => {
+    return "- swipe: " + "    direction: LEFT" + "    duration: 400"
+  },
+  swipeRight: () => {
+    return "- swipe: " + "    direction: RIGHT" + "    duration: 400"
   },
   inputText: (id, text) => {
     return `- tapOn:\n    id: "${id}"\n- inputText: ${text}\n`
@@ -105,7 +114,6 @@ export const MaestroTranslators: typeof Maestro = {
       `    duration: ${ms}\n`
     )
   },
-
   dismissKeyboard: () => {
     return "- hideKeyboard\n"
   },

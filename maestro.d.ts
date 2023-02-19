@@ -4,6 +4,7 @@ declare module "maestro-ts" {
     env?: { [key: string]: string | number }
   )
   export function launchApp(appId?: string, clear?: boolean)
+  export function tapOnText(text: string)
   export function tapOn(testId: string)
   export function longPressOn(testId: string)
   export function tapOnPoint(point: { x: number; y: number })
@@ -36,4 +37,6 @@ declare module "maestro-ts" {
   export function pressEnter()
   export function dismissKeyboard()
   export function stopApp()
+  export function swipeLeft()
+  export function swipeRight()
 }
