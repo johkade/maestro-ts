@@ -75,8 +75,51 @@ export const MaestroTranslators: typeof Maestro = {
   scrollUntilVisible: (id) => {
     return `- scrollUntilVisible:\n    element:\n        id: "${id}"\n    direction: DOWN`
   },
+  waitForAnimationEnd: (continueAfter) => {
+    if (!continueAfter) {
+      return "- waitForAnimationToEnd\n"
+    }
+    return `- waitForAnimationToEnd:\n    timeout: ${continueAfter}\n`
+  },
+  waitUntilVisible: (id, maxWait) => {
+    return (
+      "- extendedWaitUntil:\n" +
+      "    visible:\n" +
+      `        id: ${id}\n` +
+      `    timeout: ${maxWait ?? 5000}\n`
+    )
+  },
+  waitUntilNotVisible: (id, maxWait) => {
+    return (
+      "- extendedWaitUntil:\n" +
+      "    notVisible:\n" +
+      `        id: ${id}\n` +
+      `    timeout: ${maxWait ?? 5000}\n`
+    )
+  },
+  wait: (ms) => {
+    return (
+      "- swipe\n" +
+      "    start: -1,-1\n" +
+      "    e d: -1,-100\n" +
+      `    duration: ${ms}\n`
+    )
+  },
 
-  // nested actions
+  dismissKeyboard: () => {
+    return "- hideKeyboard\n"
+  },
+  screenshot: (fileName) => {
+    return `- takeScreenshot: ${fileName}\n`
+  },
+  pressEnter: () => {
+    return "- pressKey: Enter\n"
+  },
+  stopApp: () => {
+    return "- stopApp\n"
+  },
+
+  // nested actions (not implemented)
   repeat: () => {},
   repeatWhileVisible: () => {},
   repeatWhileNotVisible: () => {},

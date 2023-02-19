@@ -28,4 +28,12 @@ declare module "maestro-ts" {
   export function repeat(times: number, fn: () => void)
   export function repeatWhileVisible(id: string, fn: () => void)
   export function repeatWhileNotVisible(id: string, fn: () => void)
+  export function wait(ms: number)
+  export function waitForAnimationEnd(continueAfter?: number)
+  export function waitUntilVisible(testId: string, maxWait?: number)
+  export function waitUntilNotVisible(testId: string, maxWait?: number)
+  export function screenshot(fileName: string)
+  export function pressEnter()
+  export function dismissKeyboard()
+  export function stopApp()
 }
