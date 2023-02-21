@@ -1,13 +1,13 @@
 {
   "name": "maestro-ts",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "description": "An executable compiler for creating yaml-flows from typescript files.",
-  "main": "./build/index.js",
+  "main": "./build/src/index.js",
   "bin": {
-    "maestro-ts": "./build/index.js"
+    "maestro-ts": "./build/src/index.js"
   },
   "scripts": {
-    "test": "node ./build/index.js",
+    "test": "node ./build/src/index.js",
     "build": "tsc"
   },
   "author": "johkade.dev@gmail.com",
@@ -22,7 +22,12 @@
     "type": "git",
     "url": "git+https://github.com/johkade/maestro-ts.git"
   },
-  "keywords": [],
+  "keywords": [
+    "maestro",
+    "e2e",
+    "testing",
+    "React Native"
+  ],
   "bugs": {
     "url": "https://github.com/johkade/maestro-ts/issues"
   },

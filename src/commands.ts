@@ -1,6 +1,6 @@
 import * as Maestro from "maestro-ts"
 
-export const MaestroTranslators: typeof Maestro = {
+export const MaestroTranslators: Partial<typeof Maestro> = {
   initFlow: (appId, env) => {
     if (!env) return `appId: ${appId ?? process.env["appId"]}\n---\n`
     let variableLines = ""

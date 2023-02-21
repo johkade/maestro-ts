@@ -21,6 +21,9 @@ exports.MaestroTranslators = {
     tapOn: (id) => {
         return `- tapOn:\n    id: "${id}"\n`;
     },
+    tapOnText: (text) => {
+        return `- tapOn: ${text}`;
+    },
     tapOnPoint: ({ x, y }) => {
         return `- tapOn:\n    point: ${x}, ${y}"\n`;
     },
@@ -29,6 +32,12 @@ exports.MaestroTranslators = {
     },
     longPressOnPoint: ({ x, y }) => {
         return `- longPressOn:\n    point: ${x}, ${y}"\n`;
+    },
+    swipeLeft: () => {
+        return "- swipe: " + "    direction: LEFT" + "    duration: 400";
+    },
+    swipeRight: () => {
+        return "- swipe: " + "    direction: RIGHT" + "    duration: 400";
     },
     inputText: (id, text) => {
         return `- tapOn:\n    id: "${id}"\n- inputText: ${text}\n`;
@@ -75,7 +84,43 @@ exports.MaestroTranslators = {
     scrollUntilVisible: (id) => {
         return `- scrollUntilVisible:\n    element:\n        id: "${id}"\n    direction: DOWN`;
     },
-    // nested actions
+    waitForAnimationEnd: (continueAfter) => {
+        if (!continueAfter) {
+            return "- waitForAnimationToEnd\n";
+        }
+        return `- waitForAnimationToEnd:\n    timeout: ${continueAfter}\n`;
+    },
+    waitUntilVisible: (id, maxWait) => {
+        return ("- extendedWaitUntil:\n" +
+            "    visible:\n" +
+            `        id: ${id}\n` +
+            `    timeout: ${maxWait !== null && maxWait !== void 0 ? maxWait : 5000}\n`);
+    },
+    waitUntilNotVisible: (id, maxWait) => {
+        return ("- extendedWaitUntil:\n" +
+            "    notVisible:\n" +
+            `        id: ${id}\n` +
+            `    timeout: ${maxWait !== null && maxWait !== void 0 ? maxWait : 5000}\n`);
+    },
+    wait: (ms) => {
+        return ("- swipe\n" +
+            "    start: -1,-1\n" +
+            "    e d: -1,-100\n" +
+            `    duration: ${ms}\n`);
+    },
+    dismissKeyboard: () => {
+        return "- hideKeyboard\n";
+    },
+    screenshot: (fileName) => {
+        return `- takeScreenshot: ${fileName}\n`;
+    },
+    pressEnter: () => {
+        return "- pressKey: Enter\n";
+    },
+    stopApp: () => {
+        return "- stopApp\n";
+    },
+    // nested actions (not implemented)
     repeat: () => { },
     repeatWhileVisible: () => { },
     repeatWhileNotVisible: () => { },

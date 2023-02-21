@@ -103,3 +103,10 @@ npx maestro-ts
 ```
 
 </details>
+
+#### RoadMap
+
+- [ ] support custom compiler-blocks.
+- [ ] make console outputs pretty.
+- [ ] support more input presets. (coordinates)
+- [ ] testID autocomplete
