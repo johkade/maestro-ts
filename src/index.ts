@@ -47,7 +47,7 @@ const main = () => {
         "}\n" +
         '\nconst fs = require("fs")\n' +
         'const { MaestroTranslators } = require("../build/src/commands")\n' +
-        "const M = {...MaestroTranslators, ...MExt}" +
+        "const M = {...MaestroTranslators, ...MExt}\n" +
         'let out = ""\n'
     )
 
