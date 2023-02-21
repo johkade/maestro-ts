@@ -46,7 +46,7 @@ const main = () => {
         "  console.log('did not find extension')\n" +
         "}\n" +
         '\nconst fs = require("fs")\n' +
-        'const { MaestroTranslators } = require("../build/src/commands")\n' +
+        'const { MaestroTranslators } = require("../src/commands")\n' +
         "const M = {...MaestroTranslators, ...MExt}\n" +
         'let out = ""\n'
     )
