@@ -1,5 +1,5 @@
 import * as Maestro from "maestro-ts"
-import Config from "./maestro-ts.config.js"
+import Config from "./maestro-ts.config.cjs"
 
 export const MaestroTranslators: Partial<typeof Maestro> = {
   inputFavoriteAnimal: (id) => {

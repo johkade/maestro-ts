@@ -1,22 +1,21 @@
 {
-  "name": "maestro-ts",
-  "version": "0.2.22",
+  "name": "ts-maestro",
+  "version": "0.2.23",
   "description": "An executable compiler for creating yaml-flows from typescript files.",
-  "main": "./build/src/index.js",
+  "type": "module",
+  "main": "./dist/index.cjs",
   "bin": {
-    "maestro-ts": "./build/src/index.js"
+    "maestro-ts": "./dist/index.cjs"
   },
   "scripts": {
-    "test": "node ./build/src/index.js",
-    "build": "tsc"
+    "build": "tsc; chmod 755 dist/index.cjs",
+    "gen": "cd example && node ../dist/index.cjs"
   },
   "author": "johkade.dev@gmail.com",
-  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.14.0",
     "typescript": "^4.9.5"
   },
-  "dependencies": {},
   "typings": "./maestro.d.ts",
   "repository": {
     "type": "git",
@@ -31,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/johkade/maestro-ts/issues"
   },
-  "homepage": "https://github.com/johkade/maestro-ts#readme"
+  "homepage": "https://github.com/johkade/maestro-ts#readme",
+  "license": "MIT"
 }

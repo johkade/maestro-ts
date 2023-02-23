@@ -127,8 +127,8 @@ export const MaestroTranslators: Partial<typeof Maestro> = {
     return "- stopApp\n"
   },
 
-  // nested actions (not implemented)
-  repeat: () => {},
-  repeatWhileVisible: () => {},
-  repeatWhileNotVisible: () => {},
+  // Nested commands
+  repeat: () => "Not implemented",
+  repeatWhileVisible: () => "Not implemented",
+  repeatWhileNotVisible: () => "Not implemented",
 }

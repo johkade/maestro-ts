@@ -1,3 +1,4 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dim = exports.red = exports.yellow = exports.cyan = exports.green = void 0;
 const GREEN = "\x1b[32m%s\x1b[0m";
@@ -15,3 +16,4 @@ const red = (...data) => console.log(RED, ...data, "\n");
 exports.red = red;
 const dim = (...data) => console.log(DIM, ...data, "\n");
 exports.dim = dim;
+//# sourceMappingURL=tools.cjs.map

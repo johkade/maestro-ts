@@ -1,18 +1,16 @@
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MaestroTranslators = void 0;
-exports.MaestroTranslators = {
+export const MaestroTranslators = {
     initFlow: (appId, env) => {
         if (!env)
-            return `appId: ${appId !== null && appId !== void 0 ? appId : process.env["appId"]}\n---\n`;
+            return `appId: ${appId ?? process.env["appId"]}\n---\n`;
         let variableLines = "";
         Object.entries(env).forEach(([key, value]) => {
             variableLines += `    ${key}: ${value}\n`;
         });
-        return `appId: ${appId !== null && appId !== void 0 ? appId : process.env["appId"]}\nenv:\n${variableLines}`;
+        return `appId: ${appId ?? process.env["appId"]}\nenv:\n${variableLines}`;
     },
     launchApp: (id, clear) => {
         return ("- launchApp:\n" +
-            `    appId: "${id !== null && id !== void 0 ? id : process.env["appId"]}"\n` +
+            `    appId: "${id ?? process.env["appId"]}"\n` +
             (clear ? "    clearState: true\n" : ""));
     },
     clearState: () => {
@@ -55,7 +53,7 @@ exports.MaestroTranslators = {
         return `- tapOn:\n    id: "${id}"\n- inputRandomText\n`;
     },
     eraseText: (chars) => {
-        return `- eraseText: ${chars !== null && chars !== void 0 ? chars : 50}\n`;
+        return `- eraseText: ${chars ?? 50}\n`;
     },
     openLink: (url) => {
         return `- openLink: ${url}\n`;
@@ -94,13 +92,13 @@ exports.MaestroTranslators = {
         return ("- extendedWaitUntil:\n" +
             "    visible:\n" +
             `        id: ${id}\n` +
-            `    timeout: ${maxWait !== null && maxWait !== void 0 ? maxWait : 5000}\n`);
+            `    timeout: ${maxWait ?? 5000}\n`);
     },
     waitUntilNotVisible: (id, maxWait) => {
         return ("- extendedWaitUntil:\n" +
             "    notVisible:\n" +
             `        id: ${id}\n` +
-            `    timeout: ${maxWait !== null && maxWait !== void 0 ? maxWait : 5000}\n`);
+            `    timeout: ${maxWait ?? 5000}\n`);
     },
     wait: (ms) => {
         return ("- swipe\n" +
@@ -120,8 +118,9 @@ exports.MaestroTranslators = {
     stopApp: () => {
         return "- stopApp\n";
     },
-    // nested actions (not implemented)
-    repeat: () => { },
-    repeatWhileVisible: () => { },
-    repeatWhileNotVisible: () => { },
+    // Nested commands
+    repeat: () => "Not implemented",
+    repeatWhileVisible: () => "Not implemented",
+    repeatWhileNotVisible: () => "Not implemented",
 };
+//# sourceMappingURL=commands.js.map
