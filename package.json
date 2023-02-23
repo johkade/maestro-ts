@@ -1,6 +1,6 @@
 {
   "name": "maestro-ts",
-  "version": "0.2.23",
+  "version": "0.2.24",
   "description": "An executable compiler for creating yaml-flows from typescript files.",
   "type": "module",
   "main": "./dist/index.cjs",

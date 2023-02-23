@@ -1,12 +1,11 @@
 # Maestro-ts
 
-An executable compiler for creating yaml-flows from typescript files.
-
-> 💡 **_NOTE:_** Note, that this tool is work in progress. Currently, it's just a proof of concept and not complete nor polished. Plenty of Maestro's functionalities are not supported and the functionality of this tool might be unstable at times.
+An executable compiler for creating maestro's yaml-flows from typescript files.
 
 ## What it is
 
-Maestro is a new and amazing e2e testing tool for mobile apps. It's incredibly easy to set up and easy to use. Usually, you would write test flows in yaml, which however, can be a hassle to write, since there is no easy way to set up autocomplete for yaml and the syntax can be fairly verbose at times. Additionally, there are still some instabilities with maestro, such as with the inputText-directive, which can be fixed using hacky workarounds. Maestro-ts introduces an intelligent parsing-layer which takes in a simplistic typescript script and generates the yaml for you.
+Maestro is a new and amazing e2e testing tool for mobile apps. It's incredibly easy to set up and easy to use. Usually, you would write test flows in yaml. That however, can be a hassle to write since there is no easy way to set up autocomplete for yaml and the syntax can be fairly verbose at times. Additionally, there are still some instabilities with maestro, such as with the inputText-directive, which can be fixed using hacky workarounds. Maestro-ts introduces a parsing-layer which takes in a test flow written in typescript and generates the yaml for you.
+If you enjoy trying out or using maestro-ts or even if you just like the idea, I'd be happy if you give the repo a star ⭐️ - Thanks!
 
 **Advantages over writing flows in yaml:**
 
@@ -20,6 +19,8 @@ Maestro is a new and amazing e2e testing tool for mobile apps. It's incredibly e
 - Special use cases and complex commands are not supported atm
 - Loops are not supported atm
 - You'll have to have typescript set up
+
+> 💡 **_NOTE:_** Note, that this tool is a work in progress. Currently, it's just a proof of concept and neither complete nor polished. Plenty of Maestro's functionalities are not supported and the functionality of this tool might be unstable at times.
 
 ## Usage
 
@@ -36,7 +37,7 @@ To set up types, run
 yarn add maestro-ts --dev # or npm i maestro --save-dev
 ```
 
-### Creating your first flow
+### Create your first flow
 
 Create a file called `my-first-flow.maestro.ts` and add the following content:
 
@@ -45,6 +46,7 @@ import * as M from "maestro-ts"
 
 M.initApp("com.myTeam.myApp")
 M.tapOn("someTestId")
+// Add more commands here 😎
 ```
 
 ### Compiling and running your flows
@@ -56,12 +58,12 @@ cd test/e2e && npx maestro-ts
 maestro test my-first-flow.yaml
 ```
 
-#### Advanced Usage
+### Advanced Usage
 
-By adding a config file to the project, you can take advantage of some extra features and save a bit of work while writing flows:
+By adding a config file to your project, you can take advantage of some extra features and save a bit of work while writing flows:
 
 ```js
-// test/e2e/maestro-ts.config.cjs
+// create test/e2e/maestro-ts.config.cjs
 
 module.exports = {
   // default for commands like launchApp
@@ -77,11 +79,13 @@ Maestro-ts certainly isn't the solution for everyone, so here are a few cases wh
 
 ### You've got plenty of experience writing yaml flows for maestro and don't mind writing it.
 
-If that's the case - congrats! Maybe you've even enhanced your yaml-writing-workflow using vscode-snippets?
+If that's the case - congrats! Maybe you've even enhanced your yaml-writing-workflow using vscode-snippets for specific maestro-commands?
 
 ### You've hit a wall using maestro-ts and need a functionality it doesn't provide.
 
-Nothing stops you from initially creating your flows using maestro-ts and then manually extending them. Just make sure you don't overwrite your manually edited flow next time you run `npx maestro-ts`.
+Nothing stops you from initially creating your flows using maestro-ts and then manually extending them in the yaml file. Just make sure you don't overwrite your manually edited flow next time you run `npx maestro-ts`.
+
+> 💡 **_NOTE:_** In the future, maestro-ts will introduce custom compiler-blocks, so you can extend the functionality as you please - stay tuned for that 🚀.
 
 ### You're writing your app with RN+JS, Flutter or in native iOS and Android
 
@@ -104,7 +108,12 @@ npx maestro-ts
 
 </details>
 
-#### RoadMap
+## ToDos / RoadMap
 
-- [ ] support custom compiler-blocks.
-- [ ] optional testID autocomplete
+- [ ] Support custom compiler-blocks for extending maestro-ts.
+- [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIDS and let's you use autoComplete in your flows.
+- [ ] Support nested maestro commands, such as loops.
+
+## Issues and Contribution
+
+Please file an issue or issue a PR.
