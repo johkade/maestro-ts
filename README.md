@@ -140,6 +140,6 @@ npx maestro-ts
 
 ## ToDos / Road Map
 
-- [ ] Support custom compiler-blocks for extending and overriding maestro-ts.
-- [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIDS and let's you use autoComplete in your flows.
+- [ ] Support custom compiler-blocks for extending and overwriting maestro-ts's functionality.
+- [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIDs and let's you use autoComplete in your flows.
 - [ ] Support nested maestro commands, such as loops.
