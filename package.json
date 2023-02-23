@@ -1,5 +1,5 @@
 {
-  "name": "ts-maestro",
+  "name": "maestro-ts",
   "version": "0.2.23",
   "description": "An executable compiler for creating yaml-flows from typescript files.",
   "type": "module",
