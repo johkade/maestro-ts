@@ -61,7 +61,7 @@ maestro test my-first-flow.yaml
 By adding a config file to the project, you can take advantage of some extra features and save a bit of work while writing flows:
 
 ```js
-// test/e2e/maestro-ts.config.js
+// test/e2e/maestro-ts.config.cjs
 
 module.exports = {
   // default for commands like launchApp
@@ -107,6 +107,4 @@ npx maestro-ts
 #### RoadMap
 
 - [ ] support custom compiler-blocks.
-- [ ] make console outputs pretty.
-- [ ] support more input presets. (coordinates)
-- [ ] testID autocomplete
+- [ ] optional testID autocomplete
