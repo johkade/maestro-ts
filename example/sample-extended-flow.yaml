@@ -1,14 +1,4 @@
 appId: com.some.app
 env:
-    TEST: Hello Moon
-- launchApp:
-    appId: "com.some.app"
-- tapOn:
-    id: "Button"
-- tapOn:
-    id: "textField"
-- inputText: Hello World
-- tapOn:
-    id: "otherField"
-- inputText: ${TEST}
-- openLink: com.some.app.deepLinkBase:///profile
+    TEST: TODO
+---

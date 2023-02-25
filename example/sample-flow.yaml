@@ -1,14 +1,20 @@
 appId: com.some.app
 env:
-    TEST: Hello Moon
+    NAME: Maestro
+---
 - launchApp:
     appId: "com.some.app"
 - tapOn:
-    id: "Button"
+    id: "buttonId"
 - tapOn:
-    id: "textField"
+    id: "otherButtonId"
+- tapOn:
+    id: "textFieldId"
 - inputText: Hello World
 - tapOn:
-    id: "otherField"
-- inputText: ${TEST}
+    id: "otherTextFieldId"
+- inputText: {NAME}
+- inputText: text for focused input
 - openLink: com.some.app.deepLinkBase:///profile
+- assertVisible:
+    id: "/profile"

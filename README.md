@@ -79,14 +79,13 @@ module.exports = {
 Here's a short sample flow, but feel free to check out [the examples](example/sample-flow.maestro.ts) for more extensive flows.
 
 ```ts
-// test/e2e/myflow.maestro.ts
+// test/e2e/my-flow.maestro.ts
 import * as M from "maestro-ts"
 
-M.initFlow("com.my.app", { NAME: "Maestro" })
-M.launchApp("com.my.app")
+M.initFlow({ appId: "com.my.app", NAME: "Maestro" })
 M.tapOn("someTestId")
-M.inputText("someTextInputId", "Hello World")
-M.inputText("someTextInputId", "${NAME}")
+M.inputText("Hello", "someTextInputId") // taps input before typing
+M.inputText("${NAME}") // uses focused input
 
 /**
  * Navigating will only work once you've set up deep linking in your app
@@ -141,5 +140,5 @@ npx maestro-ts
 ## ToDos / Road Map
 
 - [ ] Support custom compiler-blocks for extending and overwriting maestro-ts's functionality.
-- [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIDs and let's you use autoComplete in your flows.
+- [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIds and let's you use autoComplete in your flows.
 - [ ] Support nested maestro commands, such as loops.

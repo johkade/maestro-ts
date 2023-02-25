@@ -1,12 +1,13 @@
 export const MaestroTranslators = {
-    initFlow: (appId, env) => {
+    initFlow: (config) => {
+        const { appId, ...env } = config;
         if (!env)
             return `appId: ${appId ?? process.env["appId"]}\n---\n`;
         let variableLines = "";
         Object.entries(env).forEach(([key, value]) => {
             variableLines += `    ${key}: ${value}\n`;
         });
-        return `appId: ${appId ?? process.env["appId"]}\nenv:\n${variableLines}`;
+        return `appId: ${appId ?? process.env["appId"]}\nenv:\n${variableLines}---\n`;
     },
     launchApp: (id, clear) => {
         return ("- launchApp:\n" +
@@ -37,23 +38,35 @@ export const MaestroTranslators = {
     swipeRight: () => {
         return "- swipe: " + "    direction: RIGHT" + "    duration: 400";
     },
-    inputText: (id, text) => {
+    inputText: (text, id) => {
+        if (!id)
+            return `- inputText: ${text}\n`;
         return `- tapOn:\n    id: "${id}"\n- inputText: ${text}\n`;
     },
     inputRandomName: (id) => {
+        if (!id)
+            return `- inputRandomPersonName\n`;
         return `- tapOn:\n    id: "${id}"\n- inputRandomPersonName\n`;
     },
     inputRandomNumber: (id) => {
+        if (!id)
+            return `- inputRandomNumber\n`;
         return `- tapOn:\n    id: "${id}"\n- inputRandomNumber\n`;
     },
     inputRandomEmail: (id) => {
+        if (!id)
+            return `- inputRandomEmail\n`;
         return `- tapOn:\n    id: "${id}"\n- inputRandomEmail\n`;
     },
     inputRandomText: (id) => {
+        if (!id)
+            return `- inputRandomText\n`;
         return `- tapOn:\n    id: "${id}"\n- inputRandomText\n`;
     },
-    eraseText: (chars) => {
-        return `- eraseText: ${chars ?? 50}\n`;
+    eraseText: (chars, id) => {
+        if (!id)
+            return `- eraseText: ${chars ?? 50}\n`;
+        return `- tapOn:\n    id: "${id}"\n- eraseText: ${chars ?? 50}\n`;
     },
     openLink: (url) => {
         return `- openLink: ${url}\n`;

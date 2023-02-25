@@ -1,15 +1,17 @@
 import * as M from "maestro-ts"
 
 // Uses appId from maestro-ts.config.cjs
-M.initFlow(undefined, { NAME: "Maestro" })
+M.initFlow({ NAME: "Maestro" })
 
 M.launchApp()
 
 M.tapOn("buttonId")
+M.tapOn("otherButtonId")
 
-M.inputText("textFieldId", "Hello World")
+M.inputText("Hello World", "textFieldId")
 
-M.inputText("otherTextFieldId", "${NAME}")
+M.inputText("{NAME}", "otherTextFieldId")
+M.inputText("text for focused input")
 
 // This would only work once you've set up deep linking in your app
 // and you've set the appropriate deepLinkingBase in maestro.config.ts
