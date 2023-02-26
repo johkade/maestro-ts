@@ -58,3 +58,6 @@ env:
         - tapOn:
             id: "myInputId"
         - inputRandomText
+- tapOn:
+    id: view_id
+

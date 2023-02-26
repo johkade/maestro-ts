@@ -1,6 +1,6 @@
-import * as Maestro from "maestro-ts"
+import { M } from "maestro-ts"
 
-export const MaestroTranslators: Partial<typeof Maestro> = {
+export const MaestroTranslators: Partial<typeof M> = {
   initFlow: (config) => {
     const { appId, ...env } = config
     if (!env) return `appId: ${appId ?? process.env["appId"]}\n---\n`
@@ -167,8 +167,6 @@ export const MaestroTranslators: Partial<typeof Maestro> = {
     if (appId) return `- stopApp: ${appId}\n`
     return "- stopApp\n"
   },
-
-  // Nested commands
   repeat: (times, func) => {
     const out = func() as unknown as string
     return `- repeat:
