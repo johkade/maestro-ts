@@ -43,7 +43,7 @@ yarn add maestro-ts --dev # or npm i maestro --save-dev
 Create a file called `my-first-flow.maestro.ts` and add the following content:
 
 ```ts
-import * as M from "maestro-ts"
+import { M } from "maestro-ts"
 
 M.initApp("com.myTeam.myApp")
 M.tapOn("someTestId")
