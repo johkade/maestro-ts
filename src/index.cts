@@ -2,16 +2,21 @@
 
 import fs from "fs"
 import path from "path"
+import { spawnSync } from "child_process"
 import * as Tools from "./tools.cjs"
 // import { spawnSync } from "child_process"
 import type { MaestroConfig } from "maestro-ts"
 
 const configPath = path.join(process.cwd(), "maestro-ts.config.cjs")
+const distPath = __dirname
 const extraCommandsPath = path.join(process.cwd(), "maestro-commands-ext.ts")
+const extraCommandsDefinitionPath = path.join(process.cwd(), "maestro-ext.d.ts")
 
-// create a temp folder for later
+// create a temp folders for later
 const tempPath = path.join(__dirname, "../temp")
+const tempTsPath = path.join(__dirname, "../temp/ts")
 if (!fs.existsSync(tempPath)) fs.mkdirSync(tempPath)
+if (!fs.existsSync(tempTsPath)) fs.mkdirSync(tempTsPath)
 
 const main = async () => {
   // Find config file and set process environment variables.
@@ -19,6 +24,7 @@ const main = async () => {
     const config = (await import(configPath)).default as MaestroConfig
     process.env["appId"] = config.appId
     process.env["deepLinkBase"] = config.deepLinkBase ?? `${config.appId}://`
+    fs.copyFileSync(configPath, path.join(distPath, "maestro-ts.config.cjs"))
     Tools.cyan(`\nFound ${configPath.split("/").pop()}`)
   } catch (error) {
     console.log(error)
@@ -28,6 +34,17 @@ const main = async () => {
   // Find commands extension file
   try {
     const extraCommands = fs.readFileSync(extraCommandsPath, "utf-8")
+    const extraCommandsInDistPath = path.join(
+      distPath,
+      "maestro-commands-ext.ts"
+    )
+    fs.copyFileSync(extraCommandsPath, extraCommandsInDistPath)
+    fs.copyFileSync(
+      extraCommandsDefinitionPath,
+      path.join(distPath, "maestro-ext.d.ts")
+    )
+    spawnSync(`tsc`, [extraCommandsInDistPath, "--module", "nodenext"])
+
     Tools.cyan("Found extra commands in maestro-commands-ext.ts")
   } catch (error) {
     Tools.dim("Did not find extra maestro commands.")
@@ -62,8 +79,16 @@ const main = async () => {
 import fs from "fs"
 const cwd = process.cwd()
 import { MaestroTranslators } from "../dist/commands.js"
-const M = { ...MaestroTranslators }
-const N = { ...MaestroTranslators }
+let MaestroExtensions = {
+  MaestroTranslators: {}
+}
+try {
+  MaestroExtensions = await import("../dist/maestro-commands-ext.js")
+} catch (error) {
+  console.log(error)
+}
+const M = { ...MaestroTranslators, ...MaestroExtensions.MaestroTranslators }
+const N = { ...MaestroTranslators, ...MaestroExtensions.MaestroTranslators }
 let out = ""
 `
     )

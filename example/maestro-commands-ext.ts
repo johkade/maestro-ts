@@ -1,11 +1,12 @@
-import * as Maestro from "maestro-ts"
+import { M } from "maestro-ts-ext"
 import Config from "./maestro-ts.config.cjs"
 
-export const MaestroTranslators: Partial<typeof Maestro> = {
+export const MaestroTranslators: Partial<typeof M> = {
   inputFavoriteAnimal: (id) => {
-    return `- tapOn:\n    id: ${id}` + `- inputText: ${Config.favoriteAnimal}`
+    if (!id) return `- inputText: ${Config.favoriteAnimal}`
+    return `- tapOn:\n    id: ${id}\n` + `- inputText: ${Config.favoriteAnimal}`
   },
   inputRandomEmail: (id) => {
-    return `- tapOn:\n    id: ${id}` + `- inputText: myCustomEmail`
+    return `- tapOn:\n    id: ${id}\n` + `- inputText: myCustomEmail`
   },
 }

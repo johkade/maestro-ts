@@ -2,3 +2,8 @@ appId: com.some.app
 env:
     TEST: TODO
 ---
+- tapOn:
+    id: dis
+- inputText: Bear- tapOn:
+    id: undefined
+- inputText: myCustomEmail

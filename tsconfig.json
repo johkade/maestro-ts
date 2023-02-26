@@ -6,5 +6,5 @@
     "sourceMap": true,
     "outDir": "dist"
   },
-  "include": ["src/**/*", "maestro.d.ts"]
+  "include": ["src/**/*", "maestro.d.ts", "**/maestro-ext.d.ts"]
 }

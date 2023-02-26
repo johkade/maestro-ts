@@ -1,0 +1,5 @@
+{
+  "compilerOptions": {},
+  "include": ["../maestro.d.ts", ".", "*./maestro-ext.d.ts"],
+  "extends": "../tsconfig.json"
+}

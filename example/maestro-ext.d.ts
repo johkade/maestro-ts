@@ -7,7 +7,7 @@ declare module "maestro-ts-ext" {
    * Extensions which should be available in nested or base commands.
    */
   interface NestedOrBaseExtension extends MaestroNestedOrBase {
-    inputFavoriteAnimal(): string
+    inputFavoriteAnimal(testId?: string): string
   }
   /**
    * Extensions which should only be available on base commands.
