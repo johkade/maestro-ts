@@ -1,5 +1,4 @@
-import * as M from "maestro-ts"
-const N = M
+import { M, N } from "maestro-ts"
 
 // Uses appId from maestro-ts.config.cjs
 M.initFlow({ NAME: "Maestro" })
@@ -42,8 +41,6 @@ M.repeatWhileVisible("testId", () => {
   N.inputRandomText("myInputId")
 })
 
-M.yaml(`
-- tapOn:
+M.yaml(`- tapOn:
     id: view_id
-
 `)

@@ -1,4 +1,4 @@
-import * as M from "maestro-ts"
+import { M } from "maestro-ts-ext"
 
 M.initFlow({ TEST: "TODO" })
 

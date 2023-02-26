@@ -80,12 +80,16 @@ Here's a short sample flow, but feel free to check out [the examples](example/sa
 
 ```ts
 // test/e2e/my-flow.maestro.ts
-import * as M from "maestro-ts"
+import { M, N } from "maestro-ts"
 
 M.initFlow({ appId: "com.my.app", NAME: "Maestro" })
 M.tapOn("someTestId")
 M.inputText("Hello", "someTextInputId") // taps input before typing
 M.inputText("${NAME}") // uses focused input
+
+M.repeat(3, () => {
+  N.tapOn("myButton") // for nested commands, you need to use the N-module.
+})
 
 /**
  * Navigating will only work once you've set up deep linking in your app
@@ -140,7 +144,6 @@ npx maestro-ts
 ## ToDos / Road Map
 
 - [ ] Add sample flows and supply sample app with multiple flows.
-- [ ] Optimize types, so that we can `import { M, N } from maestro-ts`
 - [ ] Support custom compiler-blocks for extending and overwriting maestro-ts's functionality.
 - [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIds and let's you use autoComplete in your flows.
 - [ ] Add tests
