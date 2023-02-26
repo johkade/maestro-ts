@@ -12,15 +12,21 @@ export const MaestroTranslators: Partial<typeof Maestro> = {
       appId ?? process.env["appId"]
     }\nenv:\n${variableLines}---\n`
   },
-  launchApp: (id, clear) => {
+  launchApp: (id, clearState, clearKeychain, stopApp) => {
     return (
       "- launchApp:\n" +
       `    appId: "${id ?? process.env["appId"]}"\n` +
-      (clear ? "    clearState: true\n" : "")
+      (clearState ? "    clearState: true\n" : "") +
+      (clearKeychain ? "    clearKeychain: true\n" : "") +
+      (stopApp !== undefined ? `    stopApp: ${stopApp}\n` : "")
     )
   },
-  clearState: () => {
+  clearState: (appId) => {
+    if (appId) return `- clearState: ${appId}\n`
     return "- clearState\n"
+  },
+  clearKeychain: () => {
+    return "- clearKeychain"
   },
   tapOn: (id) => {
     return `- tapOn:\n    id: "${id}"\n`
@@ -29,7 +35,7 @@ export const MaestroTranslators: Partial<typeof Maestro> = {
     return `- tapOn: ${text}`
   },
   tapOnPoint: ({ x, y }) => {
-    return `- tapOn:\n    point: ${x}, ${y}"\n`
+    return `- tapOn:\n    point: ${x},${y}"\n`
   },
   longPressOn: (id) => {
     return `- longPressOn:\n    id: "${id}"\n`
@@ -38,10 +44,19 @@ export const MaestroTranslators: Partial<typeof Maestro> = {
     return `- longPressOn:\n    point: ${x}, ${y}"\n`
   },
   swipeLeft: () => {
-    return "- swipe: " + "    direction: LEFT" + "    duration: 400"
+    return "- swipe:\n" + "    direction: LEFT\n" + "    duration: 400\n"
   },
   swipeRight: () => {
-    return "- swipe: " + "    direction: RIGHT" + "    duration: 400"
+    return "- swipe:\n" + "    direction: RIGHT\n" + "    duration: 400\n"
+  },
+  swipeDown: () => {
+    return "- swipe:\n" + "    direction: DOWN\n" + "    duration: 400\n"
+  },
+  swipeUp: () => {
+    return "- swipe:\n" + "    direction: UP\n" + "    duration: 400\n"
+  },
+  swipe: (start, end) => {
+    return `- swipe:\n    start: ${start.x}, ${start.y}\n    end:${end.x}, ${end.y}\n`
   },
   inputText: (text, id) => {
     if (!id) return `- inputText: ${text}\n`
@@ -81,7 +96,8 @@ export const MaestroTranslators: Partial<typeof Maestro> = {
     })
     return `appId: ${path}\nenv:\n${variableLines}`
   },
-  assertVisible: (id) => {
+  assertVisible: (id, enabled) => {
+    if (enabled) return `- assertVisible:\n    id: "${id}"\n    enabled: true\n`
     return `- assertVisible:\n    id: "${id}"\n`
   },
   assertNotVisible: (id) => {
@@ -123,7 +139,7 @@ export const MaestroTranslators: Partial<typeof Maestro> = {
       `    duration: ${ms}\n`
     )
   },
-  dismissKeyboard: () => {
+  hideKeyboard: () => {
     return "- hideKeyboard\n"
   },
   screenshot: (fileName) => {
@@ -132,12 +148,57 @@ export const MaestroTranslators: Partial<typeof Maestro> = {
   pressEnter: () => {
     return "- pressKey: Enter\n"
   },
-  stopApp: () => {
+  pressHomeButton: () => {
+    return "- pressKey: Home\n"
+  },
+  pressLockButton: () => {
+    return "- pressKey: Lock\n"
+  },
+  back: () => {
+    return "- pressKey: back\n"
+  },
+  volumeDown: () => {
+    return "- pressKey: volume down"
+  },
+  volumeUp: () => {
+    return "- pressKey: volume up"
+  },
+  stopApp: (appId) => {
+    if (appId) return `- stopApp: ${appId}\n`
     return "- stopApp\n"
   },
 
   // Nested commands
-  repeat: () => "Not implemented",
-  repeatWhileVisible: () => "Not implemented",
-  repeatWhileNotVisible: () => "Not implemented",
+  repeat: (times, func) => {
+    const out = func() as unknown as string
+    return `- repeat:
+    times:${times}
+    commands:
+        ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`
+  },
+  repeatWhileVisible: (id, func) => {
+    const out = func() as unknown as string
+    return `- repeat:
+    while:
+        visible:
+            id: ${id}
+    commands:
+        ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`
+  },
+  repeatWhileNotVisible: (id, func) => {
+    const out = func() as unknown as string
+    return `- repeat:
+    while:
+        notVisible:
+            id: ${id}
+    commands:
+        ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`
+  },
+  yaml: (yaml: string) => `${yaml}\n`,
+  assertTrue: (condition: string) => {
+    return `- assertTrue: ${condition}\n`
+  },
+  evalScript: (script: string) => {
+    return `- evalScript: ${script}\n`
+  },
 }

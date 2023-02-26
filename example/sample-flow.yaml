@@ -18,3 +18,43 @@ env:
 - openLink: com.some.app.deepLinkBase:///profile
 - assertVisible:
     id: "/profile"
+- repeat:
+    times:3
+    commands:
+        - tapOn:
+            id: "hello"
+        - tapOn:
+            id: "my"
+        - tapOn:
+            id: "friend"
+        - tapOn:
+            id: "myInputId"
+        - inputRandomText
+- repeat:
+    while:
+        notVisible:
+            id: testId
+    commands:
+        - tapOn:
+            id: "hello"
+        - tapOn:
+            id: "my"
+        - tapOn:
+            id: "friend"
+        - tapOn:
+            id: "myInputId"
+        - inputRandomText
+- repeat:
+    while:
+        visible:
+            id: testId
+    commands:
+        - tapOn:
+            id: "hello"
+        - tapOn:
+            id: "my"
+        - tapOn:
+            id: "friend"
+        - tapOn:
+            id: "myInputId"
+        - inputRandomText

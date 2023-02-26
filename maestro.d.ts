@@ -15,9 +15,16 @@ declare module "maestro-ts" {
   /**
    * Launches the app.
    * @param appId The bundle id of your app. Falls back to the appId provided in maestro-ts.config.js.
-   * @param clear Whether to clear the app state before starting.
+   * @param clearState Whether to clear the app state before starting.
+   * @param clearKeychain Whether to clear the entire Keychain before starting.
+   * @param stopApp Whether to stop the app before starting - default: true.
    */
-  export function launchApp(appId?: string, clear?: boolean): string
+  export function launchApp(
+    appId?: string,
+    clearState?: boolean,
+    clearKeychain?: boolean,
+    stopApp?: boolean
+  ): string
   /**
    * Tap on a text visible on screen.
    */
@@ -32,8 +39,14 @@ declare module "maestro-ts" {
   export function longPressOn(testId: string): string
   /**
    * Tap on the given point.
+   * Can either take numbers for dips or strings for percentages.
+   * @example
+   * M.tapOnPoint({ x: "50%", y: "50%"}) // tap middle of the screen.
    */
-  export function tapOnPoint(point: { x: number; y: number }): string
+  export function tapOnPoint(point: {
+    x: number | string
+    y: number | string
+  }): string
   /**
    * Long press on the given point.
    */
@@ -52,16 +65,21 @@ declare module "maestro-ts" {
   export function openLink(url: string): string
   /**
    * Assert an element with the given testId is visible.
+   * @param enabled Whether the view should also be enabled.
    */
-  export function assertVisible(testId: string): string
+  export function assertVisible(testId: string, enabled?: boolean): string
   /**
    * Assert the element with the given testId is not visible.
    */
   export function assertNotVisible(testId: string): string
   /**
-   * Clear the state of the device.
+   * Clear the state of the current app or of the app with the given id.
    */
-  export function clearState(): string
+  export function clearState(appId?: string): string
+  /**
+   * Clear the entire keychain.
+   */
+  export function clearKeychain(): string
   /**
    * Run a subFlow.
    * @param path Path to the subFlow.
@@ -101,15 +119,15 @@ declare module "maestro-ts" {
    */
   export function navigate(path: string): string
   /**
-   * @deprecated Not implemented.
+   * Repeats the given actions a given number of times.
    */
   export function repeat(times: number, fn: () => void): string
   /**
-   * @deprecated Not implemented.
+   * Repeats the given actions while the element with the given testId is visible.
    */
   export function repeatWhileVisible(id: string, fn: () => void): string
   /**
-   * @deprecated Not implemented.
+   * Repeats the given actions while the element with the given testId is not visible.
    */
   export function repeatWhileNotVisible(id: string, fn: () => void): string
   /**
@@ -140,11 +158,11 @@ declare module "maestro-ts" {
   /**
    * Dismiss the software keyboard.
    */
-  export function dismissKeyboard(): string
+  export function hideKeyboard(): string
   /**
-   * Stop the current app.
+   * Stop the current app or the one with the given appId.
    */
-  export function stopApp(): string
+  export function stopApp(appId?: string): string
   /**
    * Swipe left from center.
    */
@@ -153,4 +171,63 @@ declare module "maestro-ts" {
    * Swipe right from center.
    */
   export function swipeRight(): string
+  /**
+   * Swipe down from center.
+   */
+  export function swipeDown(): string
+  /**
+   * Swipe up from center.
+   */
+  export function swipeUp(): string
+  /**
+   * Swipe from a start to an end point. Use percentages or dips.
+   * @example
+   * // swipe from left top corner to right bottom corner.
+   * M.swipe({x: "0%", y: "0%"}, {x: "100%", y: "100%"})
+   */
+  export function swipe(
+    start: { x: string | number; y: string | number },
+    end: { x: string | number; y: string | number }
+  ): string
+  /**
+   * Insert inline yaml code. Good for specialized commands.
+   * @example
+   * M.yaml(`
+   * - tapOn:
+   *     point: 50%,50%
+   * `)
+   */
+  export function yaml(yaml: string): string
+  /**
+   * Check if a condition is true.
+   */
+  export function assertTrue(condition: string): string
+  /**
+   * Copies text of an element with the given testId. If a variable is given, the value is set to that variable.
+   */
+  export function copyTextFrom(testId: string, variableName?: string): string
+  /**
+   * Runs a script.
+   */
+  export function evalScript(script: string): string
+  /**
+   * Press android back button.
+   */
+  export function back(): string
+  /**
+   * Press the home button.
+   */
+  export function pressHomeButton(): string
+  /**
+   * Press the lock button.
+   */
+  export function pressLockButton(): string
+  /**
+   * Increase device volume.
+   */
+  export function volumeUp(): string
+  /**
+   * Decrease device volume.
+   */
+  export function volumeDown(): string
 }

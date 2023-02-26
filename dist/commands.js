@@ -132,8 +132,31 @@ export const MaestroTranslators = {
         return "- stopApp\n";
     },
     // Nested commands
-    repeat: () => "Not implemented",
-    repeatWhileVisible: () => "Not implemented",
-    repeatWhileNotVisible: () => "Not implemented",
+    repeat: (times, func) => {
+        const out = func();
+        return `- repeat:
+    times:${times}
+    commands:
+        ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`;
+    },
+    repeatWhileVisible: (id, func) => {
+        const out = func();
+        return `- repeat:
+    while:
+        visible:
+            id: ${id}
+    commands:
+        ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`;
+    },
+    repeatWhileNotVisible: (id, func) => {
+        const out = func();
+        return `- repeat:
+    while:
+        notVisible:
+            id: ${id}
+    commands:
+        ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`;
+    },
 };
+// /[.](?=.*[.])/g
 //# sourceMappingURL=commands.js.map
