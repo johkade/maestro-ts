@@ -66,7 +66,11 @@ const M = { ...MaestroTranslators }
 let out = ""
 `
     )
-    const withAccumulations = adjustedStart.replace(/\bM\./gi, "out += M.")
+    const withAccumulations = adjustedStart
+      .replace(/\bM\./gi, "out += M.")
+      .replace(/\bN\./gi, "nestedOut += N.")
+      .replace(/\(\) => {\n/gm, `() => {\nlet nestedOut = ""\n`)
+      .replace(/\)\n}\)/gm, ")\nreturn nestedOut\n})")
     const withOutput = `
 ${withAccumulations}
 fs.writeFileSync("./${fp.replace(".maestro.ts", ".yaml")}", out)
