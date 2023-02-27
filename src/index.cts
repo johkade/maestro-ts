@@ -27,7 +27,6 @@ const main = async () => {
     fs.copyFileSync(configPath, path.join(distPath, "maestro-ts.config.cjs"))
     Tools.cyan(`\nFound ${configPath.split("/").pop()}`)
   } catch (error) {
-    console.log(error)
     Tools.dim("\nDid not find a maestro-ts.config.js - using defaults.")
   }
 

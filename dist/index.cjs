@@ -52,7 +52,6 @@ const main = async () => {
         Tools.cyan(`\nFound ${configPath.split("/").pop()}`);
     }
     catch (error) {
-        console.log(error);
         Tools.dim("\nDid not find a maestro-ts.config.js - using defaults.");
     }
     // Find commands extension file
