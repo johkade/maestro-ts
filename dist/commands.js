@@ -166,7 +166,6 @@ export const MaestroTranslators = {
             return `- stopApp: ${appId}\n`;
         return "- stopApp\n";
     },
-    // Nested commands
     repeat: (times, func) => {
         const out = func();
         return `- repeat:

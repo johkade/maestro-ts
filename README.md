@@ -123,9 +123,7 @@ If that's the case - congrats! Maybe you've even enhanced your yaml-writing-work
 
 ### You've hit a wall using maestro-ts and need a functionality it doesn't provide.
 
-Nothing stops you from initially creating your flows using maestro-ts and then manually extending them in the yaml file. Just make sure you don't overwrite your manually edited flow next time you run `npx maestro-ts`. However, since we supply a `M.yaml()` function, you can literally do anything in maestro-ts you could do in yaml.
-
-> 💡 **_NOTE:_** In the future, maestro-ts will introduce custom compiler-blocks, so you can extend the functionality as you please - stay tuned for that 🚀.
+Nothing stops you from initially creating your flows using maestro-ts and then manually extending them in the yaml file. Just make sure you don't overwrite your manually edited flow next time you run `npx maestro-ts`. However, since we supply a `M.yaml()` function, you can literally do anything in maestro-ts you could do in yaml. Additionally, you can write your own extensions for maestro-ts and override functionalities as you please. So with with that, nothing should stop you, really 🚀.
 
 ### You're writing your app with RN+JS, Flutter or in native iOS and Android
 
@@ -144,6 +142,6 @@ npx maestro-ts
 ## ToDos / Road Map
 
 - [ ] Add sample flows and supply sample app with multiple flows.
-- [ ] Support custom compiler-blocks for extending and overwriting maestro-ts's functionality.
+- [x] Support custom compiler-blocks for extending and overwriting maestro-ts's functionality.
 - [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIds and let's you use autoComplete in your flows.
 - [ ] Add tests

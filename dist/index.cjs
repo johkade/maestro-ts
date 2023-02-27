@@ -29,19 +29,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const child_process_1 = require("child_process");
 const Tools = __importStar(require("./tools.cjs"));
 const configPath = path_1.default.join(process.cwd(), "maestro-ts.config.cjs");
+const distPath = __dirname;
 const extraCommandsPath = path_1.default.join(process.cwd(), "maestro-commands-ext.ts");
-// create a temp folder for later
+const extraCommandsDefinitionPath = path_1.default.join(process.cwd(), "maestro-ext.d.ts");
+// create a temp folders for later
 const tempPath = path_1.default.join(__dirname, "../temp");
+const tempTsPath = path_1.default.join(__dirname, "../temp/ts");
 if (!fs_1.default.existsSync(tempPath))
     fs_1.default.mkdirSync(tempPath);
+if (!fs_1.default.existsSync(tempTsPath))
+    fs_1.default.mkdirSync(tempTsPath);
 const main = async () => {
     // Find config file and set process environment variables.
     try {
         const config = (await import(configPath)).default;
         process.env["appId"] = config.appId;
         process.env["deepLinkBase"] = config.deepLinkBase ?? `${config.appId}://`;
+        fs_1.default.copyFileSync(configPath, path_1.default.join(distPath, "maestro-ts.config.cjs"));
         Tools.cyan(`\nFound ${configPath.split("/").pop()}`);
     }
     catch (error) {
@@ -51,6 +58,10 @@ const main = async () => {
     // Find commands extension file
     try {
         const extraCommands = fs_1.default.readFileSync(extraCommandsPath, "utf-8");
+        const extraCommandsInDistPath = path_1.default.join(distPath, "maestro-commands-ext.ts");
+        fs_1.default.copyFileSync(extraCommandsPath, extraCommandsInDistPath);
+        fs_1.default.copyFileSync(extraCommandsDefinitionPath, path_1.default.join(distPath, "maestro-ext.d.ts"));
+        (0, child_process_1.spawnSync)(`tsc`, [extraCommandsInDistPath, "--module", "nodenext"]);
         Tools.cyan("Found extra commands in maestro-commands-ext.ts");
     }
     catch (error) {
@@ -76,8 +87,16 @@ const main = async () => {
 import fs from "fs"
 const cwd = process.cwd()
 import { MaestroTranslators } from "../dist/commands.js"
-const M = { ...MaestroTranslators }
-const N = { ...MaestroTranslators }
+let MaestroExtensions = {
+  MaestroTranslators: {}
+}
+try {
+  MaestroExtensions = await import("../dist/maestro-commands-ext.js")
+} catch (error) {
+  console.log(error)
+}
+const M = { ...MaestroTranslators, ...MaestroExtensions.MaestroTranslators }
+const N = { ...MaestroTranslators, ...MaestroExtensions.MaestroTranslators }
 let out = ""
 `);
         const withAccumulations = adjustedStart

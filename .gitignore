@@ -1,3 +1,7 @@
 node_modules
 temp
 dist/example
+dist/maestro-commands-ext.ts
+dist/maestro-commands-ext.js
+dist/maestro-ts.config.cjs
+dist/maestro-ext.d.ts
