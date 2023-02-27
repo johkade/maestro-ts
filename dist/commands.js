@@ -1,7 +1,7 @@
 export const MaestroTranslators = {
     initFlow: (config) => {
         const { appId, ...env } = config;
-        if (!env)
+        if (Object.keys(env).length === 0)
             return `appId: ${appId ?? process.env["appId"]}\n---\n`;
         let variableLines = "";
         Object.entries(env).forEach(([key, value]) => {

@@ -85,7 +85,7 @@ let MaestroExtensions = {
 try {
   MaestroExtensions = await import("../dist/maestro-commands-ext.js")
 } catch (error) {
-  console.log(error)
+  console.log("No extensions found.)
 }
 const M = { ...MaestroTranslators, ...MaestroExtensions.MaestroTranslators }
 const N = { ...MaestroTranslators, ...MaestroExtensions.MaestroTranslators }

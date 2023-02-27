@@ -3,7 +3,8 @@ import { M } from "maestro-ts"
 export const MaestroTranslators: Partial<typeof M> = {
   initFlow: (config) => {
     const { appId, ...env } = config
-    if (!env) return `appId: ${appId ?? process.env["appId"]}\n---\n`
+    if (Object.keys(env).length === 0)
+      return `appId: ${appId ?? process.env["appId"]}\n---\n`
     let variableLines = ""
     Object.entries(env).forEach(([key, value]) => {
       variableLines += `    ${key}: ${value}\n`
