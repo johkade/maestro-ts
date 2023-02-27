@@ -14,9 +14,7 @@ const extraCommandsDefinitionPath = path.join(process.cwd(), "maestro-ext.d.ts")
 
 // create a temp folders for later
 const tempPath = path.join(__dirname, "../temp")
-const tempTsPath = path.join(__dirname, "../temp/ts")
 if (!fs.existsSync(tempPath)) fs.mkdirSync(tempPath)
-if (!fs.existsSync(tempTsPath)) fs.mkdirSync(tempTsPath)
 
 const main = async () => {
   // Find config file and set process environment variables.
@@ -84,7 +82,7 @@ let MaestroExtensions = {
 try {
   MaestroExtensions = await import("../dist/maestro-commands-ext.js")
 } catch (error) {
-  console.log("No extensions found.)
+  console.log("No extensions found.")
 }
 const M = { ...MaestroTranslators, ...MaestroExtensions.MaestroTranslators }
 const N = { ...MaestroTranslators, ...MaestroExtensions.MaestroTranslators }
