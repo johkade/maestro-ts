@@ -92,12 +92,12 @@ export const MaestroTranslators = {
     },
     runFlow: (path, env) => {
         if (!env)
-            return `runFlow: ${path}\n---\n`;
+            return `runFlow: ${path}\n`;
         let variableLines = "";
         Object.entries(env).forEach(([key, value]) => {
-            variableLines += `    ${key}: ${value}\n`;
+            variableLines += `      ${key}: ${value}\n`;
         });
-        return `appId: ${path}\nenv:\n${variableLines}`;
+        return `runFlow:\n    file: ${path}\n    env:\n${variableLines}`;
     },
     assertVisible: (id, enabled) => {
         if (enabled)
@@ -111,7 +111,7 @@ export const MaestroTranslators = {
         return `- scroll\n`;
     },
     scrollUntilVisible: (id) => {
-        return `- scrollUntilVisible:\n    element:\n        id: "${id}"\n    direction: DOWN`;
+        return `- scrollUntilVisible:\n    element:\n      id: "${id}"\n`;
     },
     waitForAnimationEnd: (continueAfter) => {
         if (!continueAfter) {

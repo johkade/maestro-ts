@@ -4,6 +4,13 @@ env:
 ---
 - tapOn:
     id: dis
-- inputText: Bear- tapOn:
-    id: undefined
+- inputText: Bear
 - inputText: myCustomEmail
+runFlow: subflows/app-start.flow.yaml
+- tapOn:
+    id: "testId"
+runFlow:
+    file: subflows/login/fast-login.flow.yaml
+    env:
+      TB_REFRESH_TOKEN_START: ${TB_REFRESH_TOKEN_START}
+      TB_REFRESH_TOKEN_END: ${TB_REFRESH_TOKEN_END}

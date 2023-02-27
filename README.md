@@ -145,3 +145,4 @@ npx maestro-ts
 - [x] Support custom compiler-blocks for extending and overwriting maestro-ts's functionality.
 - [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIds and let's you use autoComplete in your flows.
 - [ ] Add tests
+- [ ] Add linting rule to prevent nested usages of M.

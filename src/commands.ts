@@ -90,12 +90,12 @@ export const MaestroTranslators: Partial<typeof M> = {
     return `- openLink: ${process.env["deepLinkBase"]}${path}\n`
   },
   runFlow: (path, env) => {
-    if (!env) return `runFlow: ${path}\n---\n`
+    if (!env) return `runFlow: ${path}\n`
     let variableLines = ""
     Object.entries(env).forEach(([key, value]) => {
-      variableLines += `    ${key}: ${value}\n`
+      variableLines += `      ${key}: ${value}\n`
     })
-    return `appId: ${path}\nenv:\n${variableLines}`
+    return `runFlow:\n    file: ${path}\n    env:\n${variableLines}`
   },
   assertVisible: (id, enabled) => {
     if (enabled) return `- assertVisible:\n    id: "${id}"\n    enabled: true\n`
@@ -108,7 +108,7 @@ export const MaestroTranslators: Partial<typeof M> = {
     return `- scroll\n`
   },
   scrollUntilVisible: (id) => {
-    return `- scrollUntilVisible:\n    element:\n        id: "${id}"\n    direction: DOWN`
+    return `- scrollUntilVisible:\n    element:\n      id: "${id}"\n`
   },
   waitForAnimationEnd: (continueAfter) => {
     if (!continueAfter) {
