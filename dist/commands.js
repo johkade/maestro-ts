@@ -31,13 +31,13 @@ export const MaestroTranslators = {
         return `- tapOn: ${text}\n`;
     },
     tapOnPoint: ({ x, y }) => {
-        return `- tapOn:\n    point: ${x},${y}"\n`;
+        return `- tapOn:\n    point: ${x},${y}\n`;
     },
     longPressOn: (id) => {
         return `- longPressOn:\n    id: "${id}"\n`;
     },
     longPressOnPoint: ({ x, y }) => {
-        return `- longPressOn:\n    point: ${x}, ${y}"\n`;
+        return `- longPressOn:\n    point: ${x}, ${y}\n`;
     },
     longPressOnText: (text) => {
         return `- longPressOn: ${text}\n`;
@@ -128,13 +128,13 @@ export const MaestroTranslators = {
     waitUntilVisible: (id, maxWait) => {
         return ("- extendedWaitUntil:\n" +
             "    visible:\n" +
-            `        id: ${id}\n` +
+            `        id: "${id}"\n` +
             `    timeout: ${maxWait ?? 5000}\n`);
     },
     waitUntilNotVisible: (id, maxWait) => {
         return ("- extendedWaitUntil:\n" +
             "    notVisible:\n" +
-            `        id: ${id}\n` +
+            `        id: "${id}"\n` +
             `    timeout: ${maxWait ?? 5000}\n`);
     },
     wait: (ms) => {
@@ -184,7 +184,7 @@ export const MaestroTranslators = {
         return `- repeat:
     while:
         visible:
-            id: ${id}
+            id: "${id}"
     commands:
         ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`;
     },
@@ -193,7 +193,7 @@ export const MaestroTranslators = {
         return `- repeat:
     while:
         notVisible:
-            id: ${id}
+            id: "${id}"
     commands:
         ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`;
     },

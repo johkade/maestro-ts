@@ -19,16 +19,16 @@ env:
 - tapOn:
     id: "loginButtonId"
 - tapOn:
-    point: 100,100"
+    point: 100,100
 - tapOn:
-    point: 50%,50%"
+    point: 50%,50%
 - longPressOn: Submit
 - longPressOn:
     id: "longPressableButtonId"
 - longPressOn:
-    point: 100, 200"
+    point: 100, 200
 - longPressOn:
-    point: 50%, 50%"
+    point: 50%, 50%
 - tapOn:
     id: "input-id"
 - inputText: sample text
@@ -46,7 +46,7 @@ env:
 - inputRandomPersonName
 - inputRandomPersonName
 - tapOn:
-    id: email-input-id
+    id: "email-input-id"
 - inputText: myCustomEmail
 - inputText: myCustomEmail
 - tapOn:
@@ -54,7 +54,7 @@ env:
 - inputRandomText
 - inputRandomText
 - tapOn:
-    id: myInputId
+    id: "myInputId"
 - inputText: Bear
 - pressKey: Enter
 - hideKeyboard
@@ -101,11 +101,11 @@ env:
 - waitForAnimationToEnd
 - extendedWaitUntil:
     visible:
-        id: element-id
+        id: "element-id"
     timeout: 5000
 - extendedWaitUntil:
     notVisible:
-        id: element-id
+        id: "element-id"
     timeout: 5000
 - repeat:
     times:3
@@ -119,7 +119,7 @@ env:
 - repeat:
     while:
         visible:
-            id: element-id
+            id: "element-id"
     commands:
         - tapOn:
             id: "hello"
@@ -130,7 +130,7 @@ env:
 - repeat:
     while:
         notVisible:
-            id: element-id
+            id: "element-id"
     commands:
         - tapOn:
             id: "hello"
