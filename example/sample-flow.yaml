@@ -1,9 +1,9 @@
-appId: com.some.app
+appId: com.my.app
 env:
     NAME: Maestro
 ---
 - launchApp:
-    appId: "com.some.app"
+    appId: "com.my.app"
 - tapOn:
     id: "buttonId"
 - tapOn:
@@ -14,50 +14,7 @@ env:
 - tapOn:
     id: "otherTextFieldId"
 - inputText: {NAME}
-- inputText: text for focused input
+- inputText: more text for focused input
 - openLink: com.some.app.deepLinkBase:///profile
 - assertVisible:
     id: "/profile"
-- repeat:
-    times:3
-    commands:
-        - tapOn:
-            id: "hello"
-        - tapOn:
-            id: "my"
-        - tapOn:
-            id: "friend"
-        - tapOn:
-            id: "myInputId"
-        - inputRandomText
-- repeat:
-    while:
-        notVisible:
-            id: testId
-    commands:
-        - tapOn:
-            id: "hello"
-        - tapOn:
-            id: "my"
-        - tapOn:
-            id: "friend"
-        - tapOn:
-            id: "myInputId"
-        - inputRandomText
-- repeat:
-    while:
-        visible:
-            id: testId
-    commands:
-        - tapOn:
-            id: "hello"
-        - tapOn:
-            id: "my"
-        - tapOn:
-            id: "friend"
-        - tapOn:
-            id: "myInputId"
-        - inputRandomText
-- tapOn:
-    id: view_id
-

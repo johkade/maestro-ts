@@ -20,6 +20,7 @@ If you enjoy trying out or using maestro-ts or even if you just like the idea, I
 
 - Special use cases and complex commands might not be supported, yet
 - You'll have to have typescript set up
+- You won't benefit from using Maestro studio
 
 > 💡 **_NOTE:_** Note, that this tool is a work in progress. Currently, it's just a proof of concept and neither complete nor polished. Some of Maestro's functionalities are not supported and the functionality might be unstable in certain cases still.
 
@@ -130,7 +131,7 @@ Nothing stops you from initially creating your flows using maestro-ts and then m
 I get you might not want to set up maestro-ts in a non-React-Native app, so possibly you just want to write yaml yourself. However, if you still want to try maestro-ts, why not set up a separate project, just to create flows with?
 
 ```bash
-mkdir maestro-flow-gen && cd maestro-flow-gen
+mkdir my-flows && cd my-flows
 yarn init -y
 yarn add maestro-ts typescript --dev
 npx tsc --init
@@ -141,8 +142,9 @@ npx maestro-ts
 
 ## ToDos / Road Map
 
-- [ ] Add sample flows and supply sample app with multiple flows.
+- [x] Add sample flows
+- [ ] Supply sample app with multiple flows.
 - [x] Support custom compiler-blocks for extending and overwriting maestro-ts's functionality.
-- [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIds and let's you use autoComplete in your flows.
+- [ ] Optional testID-autocomplete - In the future, we might provide a tool which crawls your codebase for testIds and let's you use autoComplete in your flows.
 - [ ] Add tests
-- [ ] Add linting rule to prevent nested usages of M.
+- [ ] Add linting rule to prevent nested usages of M - module
