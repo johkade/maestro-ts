@@ -15,6 +15,10 @@ interface NestedOrBase {
    */
   longPressOn(testId: string): string
   /**
+   * Long press on an element with the given text.
+   */
+  longPressOnText(text: string): string
+  /**
    * Tap on the given point.
    * Can either take numbers for dips or strings for percentages.
    * @example
@@ -24,7 +28,7 @@ interface NestedOrBase {
   /**
    * Long press on the given point.
    */
-  longPressOnPoint(point: { x: number; y: number }): string
+  longPressOnPoint(point: { x: number | string; y: number | string }): string
   /**
    * Input a text into the currently focused input or the input with the given testId.
    */
@@ -156,13 +160,9 @@ interface NestedOrBase {
    */
   assertTrue(condition: string): string
   /**
-   * Copies text of an element with the given testId. If a variable is given, the value is set to that variable.
+   * Copies text of an element with the given testId.
    */
-  copyTextFrom(testId: string, variableName?: string): string
-  /**
-   * Runs a script.
-   */
-  evalScript(script: string): string
+  copyTextFrom(testId: string): string
   /**
    * Press android back button.
    */
@@ -200,12 +200,12 @@ interface All extends NestedOrBase {
    * @param clearKeychain Whether to clear the entire Keychain before starting.
    * @param stopApp Whether to stop the app before starting - default: true.
    */
-  launchApp(
-    appId?: string,
-    clearState?: boolean,
-    clearKeychain?: boolean,
+  launchApp(config?: {
+    appId?: string
+    clearState?: boolean
+    clearKeychain?: boolean
     stopApp?: boolean
-  ): string
+  }): string
   /**
    * Clear the state of the current app or of the app with the given id.
    */

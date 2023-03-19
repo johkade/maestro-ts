@@ -13,13 +13,13 @@ export const MaestroTranslators: Partial<typeof M> = {
       appId ?? process.env["appId"]
     }\nenv:\n${variableLines}---\n`
   },
-  launchApp: (id, clearState, clearKeychain, stopApp) => {
+  launchApp: (config) => {
     return (
       "- launchApp:\n" +
-      `    appId: "${id ?? process.env["appId"]}"\n` +
-      (clearState ? "    clearState: true\n" : "") +
-      (clearKeychain ? "    clearKeychain: true\n" : "") +
-      (stopApp !== undefined ? `    stopApp: ${stopApp}\n` : "")
+      `    appId: "${config.appId ?? process.env["appId"]}"\n` +
+      (config.clearState ? "    clearState: true\n" : "") +
+      (config.clearKeychain ? "    clearKeychain: true\n" : "") +
+      (config.stopApp !== undefined ? `    stopApp: ${config.stopApp}\n` : "")
     )
   },
   clearState: (appId) => {
@@ -27,22 +27,25 @@ export const MaestroTranslators: Partial<typeof M> = {
     return "- clearState\n"
   },
   clearKeychain: () => {
-    return "- clearKeychain"
+    return "- clearKeychain\n"
   },
   tapOn: (id) => {
     return `- tapOn:\n    id: "${id}"\n`
   },
   tapOnText: (text) => {
-    return `- tapOn: ${text}`
+    return `- tapOn: ${text}\n`
   },
   tapOnPoint: ({ x, y }) => {
-    return `- tapOn:\n    point: ${x},${y}"\n`
+    return `- tapOn:\n    point: ${x},${y}\n`
   },
   longPressOn: (id) => {
     return `- longPressOn:\n    id: "${id}"\n`
   },
   longPressOnPoint: ({ x, y }) => {
-    return `- longPressOn:\n    point: ${x}, ${y}"\n`
+    return `- longPressOn:\n    point: ${x}, ${y}\n`
+  },
+  longPressOnText: (text) => {
+    return `- longPressOn: ${text}\n`
   },
   swipeLeft: () => {
     return "- swipe:\n" + "    direction: LEFT\n" + "    duration: 400\n"
@@ -57,7 +60,7 @@ export const MaestroTranslators: Partial<typeof M> = {
     return "- swipe:\n" + "    direction: UP\n" + "    duration: 400\n"
   },
   swipe: (start, end) => {
-    return `- swipe:\n    start: ${start.x}, ${start.y}\n    end:${end.x}, ${end.y}\n`
+    return `- swipe:\n    start: ${start.x}, ${start.y}\n    end: ${end.x}, ${end.y}\n`
   },
   inputText: (text, id) => {
     if (!id) return `- inputText: ${text}\n`
@@ -70,6 +73,9 @@ export const MaestroTranslators: Partial<typeof M> = {
   inputRandomNumber: (id) => {
     if (!id) return `- inputRandomNumber\n`
     return `- tapOn:\n    id: "${id}"\n- inputRandomNumber\n`
+  },
+  copyTextFrom: (id) => {
+    return `- copyTextFrom:\n    id: "${id}"\n`
   },
   inputRandomEmail: (id) => {
     if (!id) return `- inputRandomEmail\n`
@@ -120,7 +126,7 @@ export const MaestroTranslators: Partial<typeof M> = {
     return (
       "- extendedWaitUntil:\n" +
       "    visible:\n" +
-      `        id: ${id}\n` +
+      `        id: "${id}"\n` +
       `    timeout: ${maxWait ?? 5000}\n`
     )
   },
@@ -128,15 +134,15 @@ export const MaestroTranslators: Partial<typeof M> = {
     return (
       "- extendedWaitUntil:\n" +
       "    notVisible:\n" +
-      `        id: ${id}\n` +
+      `        id: "${id}"\n` +
       `    timeout: ${maxWait ?? 5000}\n`
     )
   },
   wait: (ms) => {
     return (
       "- swipe\n" +
-      "    start: -1,-1\n" +
-      "    e d: -1,-100\n" +
+      "    start: -1, -1\n" +
+      "    end: -1, -100\n" +
       `    duration: ${ms}\n`
     )
   },
@@ -159,10 +165,10 @@ export const MaestroTranslators: Partial<typeof M> = {
     return "- pressKey: back\n"
   },
   volumeDown: () => {
-    return "- pressKey: volume down"
+    return "- pressKey: volume down\n"
   },
   volumeUp: () => {
-    return "- pressKey: volume up"
+    return "- pressKey: volume up\n"
   },
   stopApp: (appId) => {
     if (appId) return `- stopApp: ${appId}\n`
@@ -180,7 +186,7 @@ export const MaestroTranslators: Partial<typeof M> = {
     return `- repeat:
     while:
         visible:
-            id: ${id}
+            id: "${id}"
     commands:
         ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`
   },
@@ -189,15 +195,12 @@ export const MaestroTranslators: Partial<typeof M> = {
     return `- repeat:
     while:
         notVisible:
-            id: ${id}
+            id: "${id}"
     commands:
         ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`
   },
   yaml: (yaml: string) => `${yaml}\n`,
   assertTrue: (condition: string) => {
     return `- assertTrue: ${condition}\n`
-  },
-  evalScript: (script: string) => {
-    return `- evalScript: ${script}\n`
   },
 }

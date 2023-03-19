@@ -1,16 +1,140 @@
 appId: com.some.app
 env:
-    TEST: TODO
+    TEST_ENV_VAR: HELLO_MAESTRO
 ---
-- tapOn:
-    id: dis
-- inputText: Bear
-- inputText: myCustomEmail
-runFlow: subflows/app-start.flow.yaml
-- tapOn:
-    id: "testId"
-runFlow:
-    file: subflows/login/fast-login.flow.yaml
+- launchApp:
+    appId: "com.some.app"
+    clearState: true
+    clearKeychain: true
+- clearKeychain
+- clearState
+- runFlow: sub-flows/init.yaml
+- runFlow:
+    file: sub-flows/login.yaml
     env:
-      TB_REFRESH_TOKEN_START: ${TB_REFRESH_TOKEN_START}
-      TB_REFRESH_TOKEN_END: ${TB_REFRESH_TOKEN_END}
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+- stopApp
+- tapOn: Let's get started
+- tapOn:
+    id: "loginButtonId"
+- tapOn:
+    point: 100,100
+- tapOn:
+    point: 50%,50%
+- longPressOn: Submit
+- longPressOn:
+    id: "longPressableButtonId"
+- longPressOn:
+    point: 100, 200
+- longPressOn:
+    point: 50%, 50%
+- tapOn:
+    id: "input-id"
+- inputText: sample text
+- inputText: More text
+- tapOn:
+    id: "input-id"
+- eraseText: 5
+- eraseText: 5
+- tapOn:
+    id: "number-input-id"
+- inputRandomNumber
+- inputRandomNumber
+- tapOn:
+    id: "name-input-id"
+- inputRandomPersonName
+- inputRandomPersonName
+- tapOn:
+    id: "email-input-id"
+- inputText: myCustomEmail
+- inputText: myCustomEmail
+- tapOn:
+    id: "text-input-id"
+- inputRandomText
+- inputRandomText
+- tapOn:
+    id: "myInputId"
+- inputText: Bear
+- pressKey: Enter
+- hideKeyboard
+- pressKey: Home
+- pressKey: Lock
+- pressKey: volume down
+- pressKey: volume up
+- copyTextFrom:
+    id: "element-id"
+- openLink: https://example.com
+- openLink: com.some.app.deepLinkBase:///path
+- takeScreenshot: test.png
+- tapOn:
+  point: 50%,50%
+- swipe:
+    direction: LEFT
+    duration: 400
+- swipe:
+    direction: RIGHT
+    duration: 400
+- swipe:
+    direction: DOWN
+    duration: 400
+- swipe:
+    direction: UP
+    duration: 400
+- swipe:
+    start: 0%, 0%
+    end: 100%, 100%
+- scroll
+- scrollUntilVisible:
+    element:
+      id: "element-id"
+- assertVisible:
+    id: "element-id"
+    enabled: true
+- assertTrue: condition
+- assertNotVisible:
+    id: "element-id"
+- swipe
+    start: -1, -1
+    end: -1, -100
+    duration: 1000
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible:
+        id: "element-id"
+    timeout: 5000
+- extendedWaitUntil:
+    notVisible:
+        id: "element-id"
+    timeout: 5000
+- repeat:
+    times:3
+    commands:
+        - tapOn:
+            id: "hello"
+        - tapOn:
+            id: "my"
+        - tapOn:
+            id: "friend"
+- repeat:
+    while:
+        visible:
+            id: "element-id"
+    commands:
+        - tapOn:
+            id: "hello"
+        - tapOn:
+            id: "my"
+        - tapOn:
+            id: "friend"
+- repeat:
+    while:
+        notVisible:
+            id: "element-id"
+    commands:
+        - tapOn:
+            id: "hello"
+        - tapOn:
+            id: "my"
+        - tapOn:
+            id: "friend"

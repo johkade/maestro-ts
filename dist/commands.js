@@ -9,12 +9,12 @@ export const MaestroTranslators = {
         });
         return `appId: ${appId ?? process.env["appId"]}\nenv:\n${variableLines}---\n`;
     },
-    launchApp: (id, clearState, clearKeychain, stopApp) => {
+    launchApp: (config) => {
         return ("- launchApp:\n" +
-            `    appId: "${id ?? process.env["appId"]}"\n` +
-            (clearState ? "    clearState: true\n" : "") +
-            (clearKeychain ? "    clearKeychain: true\n" : "") +
-            (stopApp !== undefined ? `    stopApp: ${stopApp}\n` : ""));
+            `    appId: "${config.appId ?? process.env["appId"]}"\n` +
+            (config.clearState ? "    clearState: true\n" : "") +
+            (config.clearKeychain ? "    clearKeychain: true\n" : "") +
+            (config.stopApp !== undefined ? `    stopApp: ${config.stopApp}\n` : ""));
     },
     clearState: (appId) => {
         if (appId)
@@ -22,22 +22,25 @@ export const MaestroTranslators = {
         return "- clearState\n";
     },
     clearKeychain: () => {
-        return "- clearKeychain";
+        return "- clearKeychain\n";
     },
     tapOn: (id) => {
         return `- tapOn:\n    id: "${id}"\n`;
     },
     tapOnText: (text) => {
-        return `- tapOn: ${text}`;
+        return `- tapOn: ${text}\n`;
     },
     tapOnPoint: ({ x, y }) => {
-        return `- tapOn:\n    point: ${x},${y}"\n`;
+        return `- tapOn:\n    point: ${x},${y}\n`;
     },
     longPressOn: (id) => {
         return `- longPressOn:\n    id: "${id}"\n`;
     },
     longPressOnPoint: ({ x, y }) => {
-        return `- longPressOn:\n    point: ${x}, ${y}"\n`;
+        return `- longPressOn:\n    point: ${x}, ${y}\n`;
+    },
+    longPressOnText: (text) => {
+        return `- longPressOn: ${text}\n`;
     },
     swipeLeft: () => {
         return "- swipe:\n" + "    direction: LEFT\n" + "    duration: 400\n";
@@ -52,7 +55,7 @@ export const MaestroTranslators = {
         return "- swipe:\n" + "    direction: UP\n" + "    duration: 400\n";
     },
     swipe: (start, end) => {
-        return `- swipe:\n    start: ${start.x}, ${start.y}\n    end:${end.x}, ${end.y}\n`;
+        return `- swipe:\n    start: ${start.x}, ${start.y}\n    end: ${end.x}, ${end.y}\n`;
     },
     inputText: (text, id) => {
         if (!id)
@@ -68,6 +71,9 @@ export const MaestroTranslators = {
         if (!id)
             return `- inputRandomNumber\n`;
         return `- tapOn:\n    id: "${id}"\n- inputRandomNumber\n`;
+    },
+    copyTextFrom: (id) => {
+        return `- copyTextFrom:\n    id: "${id}"\n`;
     },
     inputRandomEmail: (id) => {
         if (!id)
@@ -92,12 +98,12 @@ export const MaestroTranslators = {
     },
     runFlow: (path, env) => {
         if (!env)
-            return `runFlow: ${path}\n`;
+            return `- runFlow: ${path}\n`;
         let variableLines = "";
         Object.entries(env).forEach(([key, value]) => {
             variableLines += `      ${key}: ${value}\n`;
         });
-        return `runFlow:\n    file: ${path}\n    env:\n${variableLines}`;
+        return `- runFlow:\n    file: ${path}\n    env:\n${variableLines}`;
     },
     assertVisible: (id, enabled) => {
         if (enabled)
@@ -122,19 +128,19 @@ export const MaestroTranslators = {
     waitUntilVisible: (id, maxWait) => {
         return ("- extendedWaitUntil:\n" +
             "    visible:\n" +
-            `        id: ${id}\n` +
+            `        id: "${id}"\n` +
             `    timeout: ${maxWait ?? 5000}\n`);
     },
     waitUntilNotVisible: (id, maxWait) => {
         return ("- extendedWaitUntil:\n" +
             "    notVisible:\n" +
-            `        id: ${id}\n` +
+            `        id: "${id}"\n` +
             `    timeout: ${maxWait ?? 5000}\n`);
     },
     wait: (ms) => {
         return ("- swipe\n" +
-            "    start: -1,-1\n" +
-            "    e d: -1,-100\n" +
+            "    start: -1, -1\n" +
+            "    end: -1, -100\n" +
             `    duration: ${ms}\n`);
     },
     hideKeyboard: () => {
@@ -156,10 +162,10 @@ export const MaestroTranslators = {
         return "- pressKey: back\n";
     },
     volumeDown: () => {
-        return "- pressKey: volume down";
+        return "- pressKey: volume down\n";
     },
     volumeUp: () => {
-        return "- pressKey: volume up";
+        return "- pressKey: volume up\n";
     },
     stopApp: (appId) => {
         if (appId)
@@ -178,7 +184,7 @@ export const MaestroTranslators = {
         return `- repeat:
     while:
         visible:
-            id: ${id}
+            id: "${id}"
     commands:
         ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`;
     },
@@ -187,16 +193,13 @@ export const MaestroTranslators = {
         return `- repeat:
     while:
         notVisible:
-            id: ${id}
+            id: "${id}"
     commands:
         ${out.replace(/\n(?=.*[\n])/g, "\n        ")}`;
     },
     yaml: (yaml) => `${yaml}\n`,
     assertTrue: (condition) => {
         return `- assertTrue: ${condition}\n`;
-    },
-    evalScript: (script) => {
-        return `- evalScript: ${script}\n`;
     },
 };
 //# sourceMappingURL=commands.js.map
