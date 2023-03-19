@@ -7,7 +7,7 @@ An executable compiler for creating maestro's yaml-flows from typescript files.
 > TLDR: You can write Maestro flows in TypeScript 😍
 
 Maestro is a new and amazing e2e testing tool for mobile apps. It's incredibly easy to set up and easy to use. Usually, you would write test flows in yaml. That however, can be a hassle to write since there is no easy way to set up autocomplete for yaml and the syntax can be fairly verbose at times. Additionally, there are still some instabilities with maestro, such as with the inputText-directive, which can be fixed using hacky workarounds. Maestro-ts introduces a compiling-layer which takes a test flows written in typescript and generates the yaml for you.
-If you enjoy trying out or using maestro-ts or even if you just like the idea, I'd be happy if you give the repo a star ⭐️ - Thanks!
+If you enjoy trying out or using maestro-ts and want to support the development, I'd be happy if you give the repo a star ⭐️ - Thanks!
 
 **Advantages over writing flows in yaml:**
 
@@ -20,8 +20,7 @@ If you enjoy trying out or using maestro-ts or even if you just like the idea, I
 
 - Special use cases and complex commands might not be supported, yet
 - You'll have to have typescript set up
-
-> 💡 **_NOTE:_** Note, that this tool is a work in progress. Currently, it's just a proof of concept and neither complete nor polished. Some of Maestro's functionalities are not supported and the functionality might be unstable in certain cases still.
+- You won't benefit from using Maestro studio
 
 ## Usage
 
@@ -127,15 +126,15 @@ Nothing stops you from initially creating your flows using maestro-ts and then m
 
 ### You're writing your app with RN+JS, Flutter or in native iOS and Android
 
-I get you might not want to set up maestro-ts in a non-React-Native app, so possibly you just want to write yaml yourself. However, if you still want to try maestro-ts, why not set up a separate project, just to create flows with?
+I get that you might not want to set up maestro-ts in a non-TypeScript-app, so possibly you just want to write yaml yourself. However, if you still want to try maestro-ts, why not set up a separate project, just to create flows with?
 
 ```bash
 mkdir maestro-flow-gen && cd maestro-flow-gen
 yarn init -y
 yarn add maestro-ts typescript --dev
 npx tsc --init
-touch myflow.maestro.ts # create your flow in here
-# creates myflow.yaml which you can just drop into your flutter, iOS or Android app.
+touch my-flow.maestro.ts # create your flow in here
+# creates my-flow.yaml which you can just drop into your flutter, iOS or Android app.
 npx maestro-ts
 ```
 
@@ -145,4 +144,4 @@ npx maestro-ts
 - [x] Support custom compiler-blocks for extending and overwriting maestro-ts's functionality.
 - [ ] Optional testID-autocomplete. In the future, we might provide a tool which crawls your codebase for testIds and let's you use autoComplete in your flows.
 - [ ] Add tests
-- [ ] Add linting rule to prevent nested usages of M.
+- [ ] Add linting rule to prevent nested usages of M - module
