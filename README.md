@@ -44,7 +44,7 @@ Create a file called `my-first-flow.maestro.ts` and add the following content:
 ```ts
 import { M } from "maestro-ts"
 
-M.initApp("com.myTeam.myApp")
+M.initFlow("com.myTeam.myApp")
 M.tapOn("someTestId")
 // Add more commands here 😎
 ```
