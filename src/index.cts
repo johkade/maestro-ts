@@ -71,7 +71,7 @@ const main = async () => {
     const originalFlow = fs.readFileSync(fp, "utf8")
 
     const adjustedStart = originalFlow.replace(
-      /import.*"maestro-ts.*\n/g,
+      /import.*["']maestro-ts.*\n/g,
       `import path from "path"
 import fs from "fs"
 const cwd = process.cwd()

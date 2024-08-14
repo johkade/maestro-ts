@@ -79,7 +79,7 @@ const main = async () => {
     const tempFilePaths = [];
     flowPaths.forEach((fp) => {
         const originalFlow = fs_1.default.readFileSync(fp, "utf8");
-        const adjustedStart = originalFlow.replace(/import.*"maestro-ts.*\n/g, `import path from "path"
+        const adjustedStart = originalFlow.replace(/import.*["']maestro-ts.*\n/g, `import path from "path"
 import fs from "fs"
 const cwd = process.cwd()
 import { MaestroTranslators } from "../dist/commands.js"
